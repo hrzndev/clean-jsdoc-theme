@@ -39,7 +39,24 @@
     transition: 0.3s;
     width: 18.75rem;
     z-index: 10;
+}
 
+.navbar-brand {
+    justify-items: center;
+    padding: 1rem 1rem 1.5rem;
+}
+
+.navbar-brand img {
+    float: left;
+}
+
+.navbar-brand div {
+    padding-top: 0.3rem !important;
+}
+
+.navbar-brand h2 {
+    display: inline;
+    padding-left: 1rem !important;
 }
 
 .navbar-ham {
@@ -350,5 +367,5 @@ blockquote {
     .method-member-container {
         overflow: auto;
     }
-    
+
 }

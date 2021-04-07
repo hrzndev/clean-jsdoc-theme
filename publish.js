@@ -596,9 +596,14 @@ function buildNav(members) {
         // eslint-disable-next-line no-restricted-globals
         var filter = env && env.opts && env.opts.themeOpts;
 
-        if (filter.filter === undefined) { filter.filter = true; }
-        if (JSON.parse(filter.filter)) { nav = '<h2><a href="index.html" class="filter">' + title + '</a></h2>'; }
-        else { nav = '<h2><a href="index.html">' + title + '</a></h2>'; }
+        // TODO: do a better workaround to this.
+        if (filter !== undefined) {
+            if (filter.filter === undefined) { filter.filter = true; }
+            if (JSON.parse(filter.filter)) { nav = '<h2><a href="index.html" class="filter">' + title + '</a></h2>'; }
+            else { nav = '<h2><a href="index.html">' + title + '</a></h2>'; }
+        } else {
+            nav = '<div class="navbar-brand">' + title + '</div>';
+        }
     }
 
 
