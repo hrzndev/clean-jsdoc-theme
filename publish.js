@@ -36,6 +36,9 @@ function copyStaticFolder() {
         for (var i = 0; i < staticDir.length; i++) {
             var output = path.join(outdir, staticDir[i]);
 
+            /* TODO: JSFIX could not patch the breaking change:
+            Allow copying broken symlinks 
+            Suggested fix: You can use the exists and existsSync functions https://nodejs.org/api/fs.html#fsexistspath-callback from the fs module to check if a symlink is broken. */
             fse.copySync(staticDir[i], output);
         }
     }
@@ -759,8 +762,8 @@ exports.publish = function(taffyData, opts, tutorials) {
         staticFilePaths = conf.default.staticFiles.include ||
             conf.default.staticFiles.paths ||
             [];
-        staticFileFilter = new (require('jsdoc/src/filter')).Filter(conf.default.staticFiles);
-        staticFileScanner = new (require('jsdoc/src/scanner')).Scanner();
+        staticFileFilter = new ((require('jsdoc/src/filter')).Filter)(conf.default.staticFiles);
+        staticFileScanner = new ((require('jsdoc/src/scanner')).Scanner)();
 
         staticFilePaths.forEach(function(filePath) {
             var extraStaticFiles = staticFileScanner.scan([filePath], 10, staticFileFilter);
